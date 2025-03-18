@@ -1,0 +1,455 @@
+/* Reset y configuración base */
+body {
+    font-family: Century Gothic, sans-serif;
+    background-color: #f4f4f4;
+    margin: 0;
+    padding: 0;
+    display: flex;
+}
+
+/* Contenedor Principal */
+.main-container {
+    display: flex;
+    width: 100%;
+    height: 100vh;
+}
+
+/* Panel Lateral */
+.sidebar {
+    background-color: #20776d;
+    width: 250px;
+    padding-top: 20px;
+    transition: transform 0.3s ease-in-out;
+     flex-shrink: 0; /
+    overflow: auto;
+}
+
+.sap-cliente-container {
+    display: flex;
+    align-items: center;
+    gap: 20px; /* Espacio entre los dos campos */
+}
+
+#codigo-sap {
+    width: 120px; /* Ancho suficiente para 8 caracteres */
+    text-align: left;
+}
+#nombre-cliente {
+    width: 450px; /* Espacio suficiente para escribir nombres largos */
+    text-align: left;
+}
+
+#crear-programacion {
+    display: flex;
+    flex-direction: column;
+    min-height: auto; /* ❌ Antes estaba creciendo descontroladamente */
+    height: auto; /* ✅ Se ajusta a su contenido sin expandirse */
+    overflow: hidden; /* ✅ Evita desbordes innecesarios */
+}
+
+.sidebar ul {
+    list-style: none;
+    padding: 0;
+}
+
+.sidebar li {
+    color: white;
+    padding: 15px;
+    cursor: pointer;
+    text-align: left;
+    transition: background 0.3s ease;
+    font-size: 18px;
+   font-weight:     bold;  
+}
+
+.sidebar li:hover, .sidebar .active {
+    background-color: #1fa269;
+}
+
+.sidebar .active{
+        background-color: #d5d5d5;
+        border-radius:  5px;
+        color: #20776d;   
+}
+.sidebar .hover{
+        background-color: #d5d5d5;
+        border-radius:  5px;
+        color: white;   
+}
+
+
+/* Contenido Principal */
+.content {
+    flex-grow: 1;
+    padding: 40px;
+    background-color: #ffffff;
+    overflow: auto; /* ✅ Evita que crezca sin razón */
+}
+
+/* Formularios */
+.form-section {
+    display: none;
+    animation: fadeIn 0.5s ease-in-out;
+    background: #f9f9f9;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.form-section.active {
+    display: block;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+/* Estilo para labels */
+label {
+    font-weight: bold;
+    margin-top: 10px;
+}
+
+/* Estilo para inputs y selects */
+input, select {
+    width: 100%;
+    padding: 10px;
+    font-size: 16px;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+    box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+/* Botones estilizados */
+button:not(.sync-button) {
+    background-color: #23c87f;
+    color: white;
+    font-size: 16px;
+    font-weight: bold;
+    border: none;
+    padding: 12px;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background 0.3s ease;
+    margin-top: 10px;
+}
+
+button:hover {
+    background-color: #737373;
+}
+
+/* Animación de aparición */
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateX(-20px); }
+    to { opacity: 1; transform: translateX(0); }
+}
+
+/* 🌟 RESPONSIVIDAD: Adaptación para móviles 🌟 */
+@media (max-width: 768px) {
+    .sidebar {
+        width: 100%;
+        height: auto;
+        position: fixed;
+        top: 0;
+        left: 0;
+        transform: translateY(-100%);
+        z-index: 1000;
+        display: flex;
+        flex-direction: column;
+        text-align: center;
+        background: #23c87f;
+        padding: 10px 0;
+    }
+
+    .sidebar.show {
+        transform: translateY(0);
+    }
+
+    .menu-button {
+        display: block;
+        background: #23c87f;
+        color: white;
+        border: none;
+        font-size: 20px;
+        padding: 10px;
+        width: 100%;
+        cursor: pointer;
+        text-align: center;
+    }
+
+
+}
+/* Estilos para el Top Bar */
+.top-bar {
+    background: linear-gradient(to right, #ffffff 40%, #3fcb65); /* Aumenta la parte blanca al 60% */
+    width: 100%;
+    height: 60px;
+    display: flex;
+    align-items: center;
+    padding: 0 20px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 1000;
+}
+
+
+/* Estilo del logo */
+.logo {
+    height: 80px; /* Ajuste del tamaño del logo */
+}
+
+/* Ajuste del contenido principal para que no quede detrás del top bar */
+.main-container {
+    padding-top: 70px; /* Espacio para el Top Bar */
+    display: flex;
+    width: 100%;
+    height: calc(100vh - 70px);
+}
+
+/* 🌟 RESPONSIVIDAD: Adaptación para móviles 🌟 */
+@media (max-width: 768px) {
+    .top-bar {
+        justify-content: center; /* Centra el logo en móviles */
+    }
+
+    .logo {
+        height: 50px; /* Aumenta el tamaño en móviles */
+    }
+}
+
+
+
+.input-group {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 10px;
+}
+
+.input-group label {
+    font-weight: bold;
+}
+
+.input-group select, .input-group input {
+    padding: 5px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+}
+
+
+
+/* Estilo para el botón de sincronización */
+.sync-button {
+    background-color: transparent; /* Fondo transparente */
+    border: 1px solid #ccc; /* Borde gris */
+    padding: 5px 10px; /* Espaciado */
+    border-radius: 5px; /* Bordes redondeados */
+    cursor: pointer; /* Cursor de clic */
+    font-size: 16px; /* Tamaño del ícono */
+    transition: background 0.3s ease;
+}
+
+/* Efecto hover */
+.sync-button:hover {
+    background-color: #f4f4f4;
+}
+
+/* 🔹 Estilo del botón de eliminar */
+.btn-eliminar {
+    background-color: transparent!important;
+    color: red;
+    align-items: center;
+
+    border: none;
+    font-size: 16px;
+    cursor: pointer;
+    padding: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* 🔹 Hover para que el usuario sepa que puede eliminar */
+.btn-eliminar:hover {
+    color: darkred;
+    
+}
+
+/* 🔹 Evitar que los botones hereden estilos globales */
+.custom-btn {
+    font-size: 14px; /* Tamaño normal */
+    padding: 8px 12px; /* Espaciado adecuado */
+    background-color: #23c87f; /* Color acorde al diseño */
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+/* 🔹 Cambiar color al pasar el mouse */
+.custom-btn:hover {
+    background-color: #1fa269;
+}
+
+/* 🔹 Centrar el botón en la celda */
+.acciones-columna {
+    text-align: center;
+}
+
+/* 🔹 Estilos específicos para el botón "Remover" */
+.btn-remover {
+    background-color: transparent!important;
+    color: Red!important; /* ✅ Texto negro */
+    border: 1px solid black;
+    font-size: 14px;
+    padding: 5px 10px;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+/* 🔹 Cambia de color al pasar el mouse */
+.btn-remover:hover {
+    background-color: #f4f4f4;
+}
+
+.table-container {
+    max-height: 300px; /* Limita la altura de la tabla */
+    overflow-y: auto;  /* Agrega un scroll vertical si hay demasiadas filas */
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+    padding: 5px;
+    background: white;
+    text-align: center;
+}
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+.table-wrapper {
+    margin-top: 15px; /* Agrega un espacio entre los botones y la tabla */
+    padding: 10px; /* Un ligero relleno para evitar que se vea pegado */
+}
+
+#tabla-programacion thead {
+    background-color: #20776d; /* Mismo color que el panel lateral */
+    color: white; 
+    border-radius: 10px!important;
+}
+/* 🔹 Contenedor del mensaje para evitar movimientos abruptos */
+#mensaje-clientes {
+    min-width: 250px; /* 🔹 Espacio mayor para evitar cambios de tamaño */
+    height: 22px; /* 🔹 Se fija la altura para evitar movimientos bruscos */
+    display: inline-flex;
+    align-items: center;
+    font-size: 14px;
+    transition: opacity 0.5s ease-in-out, visibility 0.5s ease-in-out;
+    text-align: left;
+    visibility: hidden; /* Se oculta sin colapsar el espacio */
+    opacity: 0; /* Inicialmente invisible */
+}
+
+
+/* 📌 Evita que las celdas de la tabla se colapsen o se desordenen */
+#tabla-programacion {
+    width: 100%;
+    border-collapse: collapse; /* ✅ Asegura que las celdas se alineen correctamente */
+    table-layout: fixed; /* ✅ Corrige la distribución del ancho de las columnas */
+}
+
+/* 📌 Ajusta el tamaño de cada columna */
+#tabla-programacion th, #tabla-programacion td {
+   padding: 5px 10px;
+    text-align: left;
+    font-size: 14px;
+    height: 10px; 
+    word-wrap: break-word; /* ✅ Evita que el texto se desborde */
+    white-space: nowrap; /* ✅ Evita saltos de línea inesperados */
+}
+#tabla-programacion td:nth-child(1) { /* Cliente */
+    text-align: left;
+}
+#tabla-programacion td:nth-child(2), /* Tipo de Muestra */
+#tabla-programacion td:nth-child(3), /* Cantidad */
+#tabla-programacion td:nth-child(4), /* Mes */
+#tabla-programacion td:nth-child(5) { /* Acciones */
+    text-align: center;
+}
+
+
+#tabla-programacion th:nth-child(1) { /* Cliente */
+    text-align: left;
+}
+#tabla-programacion th:nth-child(2), /* Tipo de Muestra */
+#tabla-programacion th:nth-child(3), /* Cantidad */
+#tabla-programacion th:nth-child(4), /* Mes */
+#tabla-programacion th:nth-child(5) { /* Acciones */
+    text-align: center;
+}
+/* 📌 Ajuste del contenedor de la tabla */
+.table-container {
+    max-height: 300px;
+    overflow-y: auto;
+    overflow-x: hidden; /* ✅ Elimina la barra horizontal innecesaria */
+}
+
+
+.botones-container {
+    display: flex;
+    gap: 10px;
+    margin-top: 10px;
+}
+
+.boton-agregar, .boton-guardar {
+    flex: 1; /* Para que ambos botones tengan el mismo tamaño */
+    text-align: center;
+}
+
+.mensaje-envio {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    background-color: rgba(0, 0, 0, 0.7);
+    color: white;
+    font-size: 18px;
+    font-weight: bold;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1000;
+    text-align: center;
+}
+
+/* Ocultar el mensaje de envío por defecto */
+.mensaje-envio.oculto {
+    display: none;
+}
+
+/* 🔹 Spinner de carga */
+.spinner {
+    width: 50px;
+    height: 50px;
+    border: 5px solid rgba(255, 255, 255, 0.3);
+    border-top: 5px solid white;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+    margin-bottom: 10px;
+}
+
+/* 🔹 Animación del spinner */
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+#fecha-ejecucion {
+    font-family: "Century Gothic", sans-serif;
+    font-size: 16px;
+}
