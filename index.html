@@ -13,7 +13,7 @@
             <ul>
                 <li class="menu-option active" data-target="crear-cliente">Crear Cliente</li>
                 <li class="menu-option" data-target="crear-programacion">Crear Programación</li>
-             
+                <li class="menu-option" data-target="registrar-actividad">Registrar Actividad</li>
             </ul>
         </nav>
 
@@ -64,89 +64,97 @@
 </section>
 
 
-
             <!-- Sección Crear Programación -->
-<section id="crear-programacion" class="form-section">
-    <h3>Crear Programación</h3>
-
-    <form id="programacion-form">
-        <!-- Primera fila: Cliente y Tipo de Muestra -->
-        <div class="input-group">
-            <label for="cliente">Seleccionar Cliente:</label>
-            <select id="cliente"></select>
-           <button type="button" id="refresh-clientes" class="sync-button">🔄</button>
-<span id="mensaje-clientes" style="margin-left: 10px; font-weight: bold;"></span>
-            <label for="tipo-analisis">Tipo de Muestra:</label>
-            <select id="tipo-analisis">
-                <option value="Foliares">Foliares</option>
-                <option value="Suelos">Suelos</option>
-                <option value="SS">SS</option>
-                <option value="Fruto">Fruto</option>
-             
-                <option value="No Agritec">No Agritec</option>
-                <option value="Autoconsumo">Autoconsumo</option>
-            </select>
-        </div>
-
-        <!-- Segunda fila: Cantidad y Mes -->
-        <div class="input-group">
-            <label for="cantidad">Cantidad de Muestras:</label>
-            <input type="number" id="cantidad" min="1" required style="width: 80px;">
-
-            <label for="mes">Mes de Programación:</label>
-            <select id="mes">
-                <option value="Enero">Enero</option>
-                <option value="Febrero">Febrero</option>
-                <option value="Marzo">Marzo</option>
-                <option value="Abril">Abril</option>
-                <option value="Mayo">Mayo</option>
-                <option value="Junio">Junio</option>
-                <option value="Julio">Julio</option>
-                <option value="Agosto">Agosto</option>
-                <option value="Septiembre">Septiembre</option>
-                <option value="Octubre">Octubre</option>
-                <option value="Noviembre">Noviembre</option>
-                <option value="Diciembre">Diciembre</option>
-            </select>
-        </div>
-
-    </form>
-<div class="botones-container">
+            <section id="crear-programacion" class="form-section">
+                <h3>Crear Programación</h3>
+                <form id="programacion-form">
+<div class="input-group" style="display: flex; align-items: center; gap: 10px; flex-wrap: wrap;">
+    <label for="cliente" style="margin-right: 5px;">Seleccionar Cliente:</label>
+    <select id="cliente" style="max-width: 300px; flex: 1;"></select>
+    <button type="button" id="refresh-clientes" class="sync-button">🔄</button>
+    <button type="button" id="toggle-tabla" class="boton-toggle-vista">Usar vista tabla</button>
+    <span id="mensaje-clientes" style="margin-left: 10px; font-weight: bold;"></span>
+</div>
+                    <div id="vista-formulario">
+                        <div class="input-group">
+                            <label for="tipo-analisis">Tipo de Muestra:</label>
+                            <select id="tipo-analisis">
+                                <option value="Foliares">Foliares</option>
+                                <option value="Suelos">Suelos</option>
+                                <option value="SS">SS</option>
+                                <option value="Fruto">Fruto</option>
+                                <option value="No Agritec">No Agritec</option>
+                                <option value="Autoconsumo">Autoconsumo</option>
+                            </select>
+                        </div>
+                        <div class="input-group">
+                            <label for="cantidad">Cantidad de Muestras:</label>
+                            <input type="number" id="cantidad" min="1" required style="width: 80px;">
+                            <label for="mes">Mes de Programación:</label>
+                            <select id="mes">
+                                <option value="Enero">Enero</option>
+                                <option value="Febrero">Febrero</option>
+                                <option value="Marzo">Marzo</option>
+                                <option value="Abril">Abril</option>
+                                <option value="Mayo">Mayo</option>
+                                <option value="Junio">Junio</option>
+                                <option value="Julio">Julio</option>
+                                <option value="Agosto">Agosto</option>
+                                <option value="Septiembre">Septiembre</option>
+                                <option value="Octubre">Octubre</option>
+                                <option value="Noviembre">Noviembre</option>
+                                <option value="Diciembre">Diciembre</option>
+                            </select>
+                        </div>
+<!-- Botones de acción -->
+<div id="botones-formulario" class="botones-container">
     <button type="button" id="agregar-tabla" class="boton-agregar custom-btn">Agregar a la Tabla</button>
-    <button type="button" id="guardar-programacion" class="boton-guardar custom-btn">
-    Guardar Programación
-</button>
-
+  
 </div>
 
-<!-- Mensaje de carga -->
-<div id="mensaje-envio-programacion" class="mensaje-envio oculto">
-    <div class="spinner"></div>
-    <p id="mensaje-texto-programacion">Enviando programación...</p>
-</div>
-<!-- Tabla de Programación -->
+                        <div class="table-wrapper" id="tabla-programacion-container">
+                            <div class="table-container">
+                                <table id="tabla-programacion">
+                                    <thead>
+                                        <tr>
+                                            <th>Cliente</th>
+                                            <th>Tipo de Muestra</th>
+                                            <th>Cantidad</th>
+                                            <th>Mes</th>
+                                            <th>Acciones</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="tabla-programaciones"></tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                        <button type="button" id="guardar-programacion" class="boton-guardar custom-btn">Guardar Programación</button>
+                    <div id="tabla-editable-container" class="table-wrapper oculto">
+                        <div class="table-container">
+                            <table id="tabla-editable">
+                                <thead>
+                                    <tr>
+                                        <th>Mes</th>
+                                        <th>Foliares</th>
+                                        <th>Suelo</th>
+                                        <th>SS</th>
+                                        <th>Fruto</th>
+                                        <th>No Agritec</th>
+                                        <th>Autoconsumo</th>
+                                    </tr>
+                                </thead>
+                                <tbody></tbody>
+                            </table>
+                        </div>
+                    </div>
+                </form>
+                <div id="mensaje-envio-programacion" class="mensaje-envio oculto">
+                    <div class="spinner"></div>
+                    <p id="mensaje-texto-programacion">Enviando programación...</p>
+                </div>
+            </section>
 
-<!-- 📌 Contenedor que evita que la tabla expanda la sección innecesariamente -->
-<div class="table-wrapper">
-    <div class="table-container">
-        <table id="tabla-programacion">
-            <thead>
-                <tr>
-                    <th>Cliente</th>
-                    <th>Tipo de Muestra</th>
-                    <th>Cantidad</th>
-                    <th>Mes</th>
-                    <th>Acciones</th>
-                </tr>
-            </thead>
-            <tbody id="tabla-programaciones">
-                <!-- Aquí se agregarán las filas dinámicamente -->
-            </tbody>
-        </table>
-    </div>
-</div>
-
-</section>
 
 <!-- Sección Registrar Actividad -->
 <section id="registrar-actividad" class="form-section">
@@ -205,28 +213,6 @@
         <div class="spinner"></div>
         <p id="mensaje-texto-actividad">Enviando actividad...</p>
     </div>
-
-    <!-- Tabla de Actividades -->
-    <div class="table-wrapper">
-        <div class="table-container">
-            <table id="tabla-actividad">
-                <thead>
-                    <tr>
-                        <th>Cliente</th>
-                        <th>Tipo de Muestra</th>
-                        <th>Cantidad</th>
-                        <th>Fecha</th>
-                        <th>Mes</th>
-                        <th>Acciones</th>
-                    </tr>
-                </thead>
-                <tbody id="tabla-actividades">
-                    <!-- Aquí se agregarán las filas dinámicamente -->
-                </tbody>
-            </table>
-        </div>
-    </div>
-</section>
 
 
         </div>
