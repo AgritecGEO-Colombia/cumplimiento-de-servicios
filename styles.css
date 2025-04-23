@@ -295,6 +295,7 @@ button:hover {
     background-color: #1fa269;
 }
 
+
 /* 🔹 Centrar el botón en la celda */
 .acciones-columna {
     text-align: center;
@@ -453,3 +454,89 @@ table {
     font-family: "Century Gothic", sans-serif;
     font-size: 16px;
 }
+/* Tabla editable */
+/* Aplica estilo general a las celdas */
+#tabla-editable td {
+    padding: 5px 8px;
+    text-align: left; /* 🔄 Cambiado de center a left */
+    vertical-align: middle;
+    font-size: 14px;
+    font-family: Arial, sans-serif;
+}
+
+/* Estilo para celdas editables */
+#tabla-editable td[contenteditable="true"] {
+    background-color: #fff; /* más limpio */
+    border: 1px solid #ccc;
+    outline: none;
+    cursor: text;
+}
+
+/* Estilo para encabezados */
+#tabla-editable th {
+    background-color: #f0f0f0;
+    text-align: center;
+    padding: 8px;
+    font-weight: bold;
+}
+
+/* Asegurar scroll vertical si hay muchas filas */
+.table-container {
+    max-height: 400px;
+    overflow-y: auto;
+}
+
+/* Estilo general para la tabla */
+#tabla-editable {
+    width: 100%;
+    border-collapse: collapse;
+    table-layout: fixed;
+}
+
+/* Ocultar inicialmente */
+.oculto {
+    display: none !important;
+}
+
+.boton-toggle-vista {
+    background-color: #3498db!important;  /* Azul moderno */
+    color: white!important;
+    padding: 8px 16px!important;
+    border: none!important;
+    border-radius: 6px!important;
+    font-weight: bold!important;
+    cursor: pointer!important;
+    transition: background-color 0.3s ease!important;
+    display: inline-block!important;
+    margin-left: 10px!important;
+}
+
+.boton-toggle-vista:hover {
+    background-color: #2980b9!important;  /* Azul más oscuro al pasar el mouse */
+}
+#guardar-programacion {
+    background-color: gray!important;
+    font-size: 18px;
+    padding: 14px 20px;
+    width: 100%; /* o usa un valor fijo como 300px */
+    max-width: 400px;
+    margin-top: 15px;
+}
+
+#agregar-actividad {
+    font-size: 18px;
+    padding: 14px 20px;
+    width: 10%;       /* O puedes usar un ancho fijo si prefieres */
+    max-width: 400px;  /* Limita su tamaño para que no sea excesivo */
+    margin-top: 15px;
+}
+#agregar-actividad.boton-agregar.custom-btn {
+    font-size: 18px !important;
+    padding: 14px 24px !important;
+    width: 100% !important;
+    max-width: 400px !important;
+    margin-top: 15px !important;
+    display: block !important;
+    text-align: center !important;
+}
+
